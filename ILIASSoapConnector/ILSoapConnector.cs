@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace ILIASSoapConnector
 {
-    public class ILIASSoapConnector : IILIASSoapConnector
+    public class ILSoapConnector : IILSoapConnector
     {
 
         private string _baseUrl;
@@ -18,20 +18,15 @@ namespace ILIASSoapConnector
         private string _soapPassword;
         private string _soapSession;
 
-        public ILIASSoapConnector(string baseUrl, string soapUser, string soapPassword) : this(baseUrl)
+        public ILSoapConnector(string baseUrl, string soapUser, string soapPassword) : this(baseUrl)
         {
             _soapUser = soapUser;
             _soapPassword = soapPassword;
         }
 
-        public ILIASSoapConnector(string baseUrl)
+        public ILSoapConnector(string baseUrl)
         {
             _baseUrl = baseUrl;
-        }
-
-        public ILIASSoapConnector()
-        {
-
         }
 
         public void SetBaseUrl(string baseUrl)
