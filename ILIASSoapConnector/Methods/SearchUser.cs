@@ -10,21 +10,20 @@ namespace ILIASSoapConnector
 {
 	public partial class ILSoapConnector
 	{
-        /// <summary>
-        /// Achtung. Das liefert meherer User in der SOAP Response zurück. Überarbeiten.
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns></returns>
-        public async Task<IliasUser> SearchUserAsync(string login)
-        {
+		/// <summary>
+		/// Achtung. Das liefert mehrere User in der SOAP Response zurück. Überarbeiten.
+		/// </summary>
+		/// <param name="login"></param>
+		/// <returns></returns>
+		public async Task<IliasUser> SearchUserAsync(string login)
+		{
 
-            if (_soapSession == null)
-                _soapSession = await LoginAsync("elearning", _soapUser, _soapPassword);
+			var session = GetConnectorSessionAsync();
 
-            var term = "login";
+			var term = "login";
 
-            var soapEnvelopeXml = new XmlDocument();
-            soapEnvelopeXml.LoadXml(String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
+			var soapEnvelopeXml = new XmlDocument();
+			soapEnvelopeXml.LoadXml(String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
             <s:Envelope xmlns:s=""http://schemas.xmlsoap.org/soap/envelope/"">
                 <s:Body s:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
                     <q1:searchUser xmlns:q1=""urn:ilUserAdministration"">
@@ -42,13 +41,13 @@ namespace ILIASSoapConnector
                         <Item>{2}</Item>
                     </q3:Array>
                 </s:Body>
-            </s:Envelope>", _soapSession, term, login));
+            </s:Envelope>", session, term, login));
 
-            var request = new IliasWebRequest(_baseUrl);
-            var response = await request.DoRequestAsync(soapEnvelopeXml);
+			var request = new IliasWebRequest(_baseUrl);
+			var response = await request.DoRequestAsync(soapEnvelopeXml);
 
-            var user = IliasToObjectParser.SearchUsersResponse(response);
-            return user;
-        }
-    }
+			var user = IliasToObjectParser.SearchUsersResponse(response);
+			return user;
+		}
+	}
 }
