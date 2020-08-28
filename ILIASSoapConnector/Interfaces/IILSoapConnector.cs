@@ -14,6 +14,7 @@ namespace ILIASSoapConnector.Interfaces
         Task<IliasUser> SearchUserAsync(string login);
         Task<int> LookupUserAsync(string login);
         Task<IliasUser> GetUserAsync(int userId);
+        Task<int> GetUserBySidAsync(string userId);
     }
 
 }
