@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILIASSoapConnector", "ILIASSoapConnector\ILIASSoapConnector.csproj", "{F8CE0CC9-8EE3-416D-BABF-5A1CC0390775}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILIASSoapConnector.Tests", "ILIASSoapConnector.Tests\ILIASSoapConnector.Tests.csproj", "{4C61F2B1-1247-4F7C-BB54-0859C03807EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8CE0CC9-8EE3-416D-BABF-5A1CC0390775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CE0CC9-8EE3-416D-BABF-5A1CC0390775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CE0CC9-8EE3-416D-BABF-5A1CC0390775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CE0CC9-8EE3-416D-BABF-5A1CC0390775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C61F2B1-1247-4F7C-BB54-0859C03807EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C61F2B1-1247-4F7C-BB54-0859C03807EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C61F2B1-1247-4F7C-BB54-0859C03807EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C61F2B1-1247-4F7C-BB54-0859C03807EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74132F6E-1147-41D5-A316-8F1305A16C14}
+	EndGlobalSection
+EndGlobal
