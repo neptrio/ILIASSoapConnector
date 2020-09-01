@@ -11,7 +11,7 @@ namespace ILIASSoapConnector
 	public partial class ILSoapEndpoint
 	{
 		/// <summary>
-		/// Achtung. Das liefert mehrere User in der SOAP Response zurück. Überarbeiten.
+		/// Achtung. Das liefert mehrere User in der SOAP Response zurück. Überarbeiten. Sucht nur nach Login.
 		/// </summary>
 		/// <param name="login"></param>
 		/// <returns></returns>

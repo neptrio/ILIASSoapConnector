@@ -25,6 +25,13 @@ namespace ILIASSoapConnector
 			_client = client;
 		}
 
+
+		/// <summary>
+		/// Returns the session needed to communicate with protected methods.
+		/// If no session is available an authentication is performed. 
+		/// An expired session is not updated or checked. TODO
+		/// </summary>
+		/// <returns></returns>
 		private async Task<string> GetConnectorSessionAsync()
 		{
 			if (_client == null)
