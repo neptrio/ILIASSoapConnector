@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ILIASSoapConnector.Interfaces
 {
-	public interface IILSoapConnector
+	public interface IILSoapEndpoint
 	{
 		void SetBaseUrl(string baseUrl);
 		void SetCredentials(string soapUser, string soapPassword);

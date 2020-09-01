@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace ILIASSoapConnector.Interfaces
 {
-	public interface IIliasWebRequest
+	public interface IILWebRequest
 	{
 		Task<string> DoRequestAsync(XmlDocument soapEnvelopeXml);
 	}

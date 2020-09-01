@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace ILIASSoapConnector
 {
-	public partial class ILSoapConnector
+	public partial class ILSoapEndpoint
 	{
 		public async Task<string> LoginAsync(string client, string username, string password)
 		{
@@ -24,7 +24,7 @@ namespace ILIASSoapConnector
                     </soapenv:Body>
                </soapenv:Envelope>", client, username, password));
 
-			var request = new IliasWebRequest(_baseUrl);
+			var request = new ILWebRequest(_baseUrl);
 			var response = await request.DoRequestAsync(soapEnvelopeXml);
 
 			var sid = IliasToObjectParser.LoginResponse(response);

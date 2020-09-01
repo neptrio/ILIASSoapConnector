@@ -10,16 +10,16 @@ using System.Xml;
 
 namespace ILIASSoapConnector
 {
-	public partial class ILSoapConnector : ILSoapConnectorBase, IILSoapConnector
+	public partial class ILSoapEndpoint : ILSoapEndpointBase, IILSoapEndpoint
 	{
 
-		public ILSoapConnector(string baseUrl, string client, string soapUser, string soapPassword) : this(baseUrl, client)
+		public ILSoapEndpoint(string baseUrl, string client, string soapUser, string soapPassword) : this(baseUrl, client)
 		{
 			_soapUser = soapUser;
 			_soapPassword = soapPassword;
 		}
 
-		public ILSoapConnector(string baseUrl, string client)
+		public ILSoapEndpoint(string baseUrl, string client)
 		{
 			_baseUrl = baseUrl;
 			_client = client;

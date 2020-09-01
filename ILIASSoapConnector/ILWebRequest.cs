@@ -9,12 +9,12 @@ using System.Xml;
 
 namespace ILIASSoapConnector
 {
-	class IliasWebRequest : IIliasWebRequest
+	class ILWebRequest : IILWebRequest
 	{
 
 		private readonly string _baseUrl;
 
-		public IliasWebRequest(string baseUrl)
+		public ILWebRequest(string baseUrl)
 		{
 			_baseUrl = baseUrl;
 		}

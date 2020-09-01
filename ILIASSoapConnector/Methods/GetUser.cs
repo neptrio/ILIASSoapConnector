@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace ILIASSoapConnector
 {
-	public partial class ILSoapConnector
+	public partial class ILSoapEndpoint
 	{
 		public async Task<IliasUser> GetUserAsync(int userId)
 		{
@@ -26,7 +26,7 @@ namespace ILIASSoapConnector
                     </soapenv:Body>
                 </soapenv:Envelope>", soapSession, userId));
 
-			var request = new IliasWebRequest(_baseUrl);
+			var request = new ILWebRequest(_baseUrl);
 			var response = await request.DoRequestAsync(soapEnvelopeXml);
 
 			var user = IliasToObjectParser.GetUserResponse(response);

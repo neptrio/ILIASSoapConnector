@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace ILIASSoapConnector
 {
-	public partial class ILSoapConnector
+	public partial class ILSoapEndpoint
 	{
 		/// <summary>
 		/// Achtung. Das liefert mehrere User in der SOAP Response zurück. Überarbeiten.
@@ -43,7 +43,7 @@ namespace ILIASSoapConnector
                 </s:Body>
             </s:Envelope>", session, term, login));
 
-			var request = new IliasWebRequest(_baseUrl);
+			var request = new ILWebRequest(_baseUrl);
 			var response = await request.DoRequestAsync(soapEnvelopeXml);
 
 			var user = IliasToObjectParser.SearchUsersResponse(response);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ILIASSoapConnector
 {
-	public abstract class ILSoapConnectorBase
+	public abstract class ILSoapEndpointBase
 	{
 		protected string _baseUrl;
 		protected string _client;
