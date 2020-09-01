@@ -11,7 +11,7 @@ PM > Install-Package ILIASSoapConnector
 
 Usage:
 ```csharp
-var connector = new ILSoapConnector("https://your-ilias-installation.com/webservice/soap/server.php","client-id", "soap-account-username", "password");
-var ilUser = await connector.GetUserAsync(ilUserId);
+var endpoint = new ILSoapEndpoint("https://your-ilias-installation.com/webservice/soap/server.php","client-id", "soap-account-username", "password");
+var ilUser = await endpoint.GetUserAsync(ilUserId);
 ```
 
