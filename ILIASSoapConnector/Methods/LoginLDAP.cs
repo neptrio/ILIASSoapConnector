@@ -19,7 +19,7 @@ namespace ILIASSoapConnector
                         <urn:loginLDAP soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
                             <client xsi:type=""xsd:string"">{0}</client>
                             <username xsi:type=""xsd:string"">{1}</username>
-                            <password xsi:type=""xsd:string"">{2}</password>
+                            <password xsi:type=""xsd:string""><![CDATA[{2}]]></password>
                         </urn:loginLDAP>
                     </soapenv:Body>
                </soapenv:Envelope>", client, username, password));
