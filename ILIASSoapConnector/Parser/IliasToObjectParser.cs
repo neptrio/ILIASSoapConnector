@@ -63,11 +63,16 @@ namespace ILIASSoapConnector.Parser
         /// </summary>
         /// <param name="xml"></param>
         /// <returns>Ilias SessionId</returns>
-        public static string ErrorResponse(string xml)
+        public static SoapFault ErrorResponse(string xml)
         {
+            XNamespace soapEnv = "http://schemas.xmlsoap.org/soap/envelope/";
+
             XDocument doc = XDocument.Parse(xml);
-            var e = doc.Root.Value;
-            return e;
+            XElement fault = doc.Descendants().Where(x => x.Name.LocalName == "Fault").FirstOrDefault();
+            var faultCode = fault.Element("faultcode").Value;
+            var faultString = fault.Element("faultstring").Value;
+
+            return new SoapFault(faultCode, faultString);
         }
 
         /// <summary>

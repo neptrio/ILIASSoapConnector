@@ -41,10 +41,18 @@ namespace ILIASSoapConnector
 				//For many possible errors ILIAS returns an HTTP 500 error that throws an exception. 
 				//In order to know what happens we have to intercept the error and read the content.
 				var response = await ReadStreamAsync(e.Response);
-				var errorMessage = IliasToObjectParser.ErrorResponse(response);
-				throw new ILSoapException(errorMessage);
+				try
+				{
+					var errorMessage = IliasToObjectParser.ErrorResponse(response);
+					throw new ILSoapException(e.Message, errorMessage.FaultCode, errorMessage.FaultString);
+				}
+				catch (Exception)
+				{
+					//If we cannot parse the error there is another problem. 
+					//In this case we throw the original exception.
+					throw e;
+				}
 			}
-			
 		}
 
 
