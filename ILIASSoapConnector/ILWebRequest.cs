@@ -46,7 +46,12 @@ namespace ILIASSoapConnector
 					var errorMessage = IliasToObjectParser.ErrorResponse(response);
 					throw new ILSoapException(e.Message, errorMessage.FaultCode, errorMessage.FaultString);
 				}
-				catch (Exception)
+				catch(ILSoapException ile)
+				{
+					//Parsing was successful, so we are throwing our ILSoapException.
+					throw ile;
+				}
+				catch
 				{
 					//If we cannot parse the error there is another problem. 
 					//In this case we throw the original exception.
