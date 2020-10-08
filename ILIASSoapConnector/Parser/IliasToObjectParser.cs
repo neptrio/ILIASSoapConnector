@@ -59,6 +59,18 @@ namespace ILIASSoapConnector.Parser
         }
 
         /// <summary>
+        /// Parst die XML-Antwort im Falle eines Server Error.
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns>Ilias SessionId</returns>
+        public static string ErrorResponse(string xml)
+        {
+            XDocument doc = XDocument.Parse(xml);
+            var e = doc.Root.Value;
+            return e;
+        }
+
+        /// <summary>
         /// Parst die XML-Antwort von SOAP - loginUser().
         /// </summary>
         /// <param name="xml"></param>

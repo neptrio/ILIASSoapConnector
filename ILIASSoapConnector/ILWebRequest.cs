@@ -1,4 +1,6 @@
-﻿using ILIASSoapConnector.Interfaces;
+﻿using ILIASSoapConnector.Exceptions;
+using ILIASSoapConnector.Interfaces;
+using ILIASSoapConnector.Parser;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,14 +29,32 @@ namespace ILIASSoapConnector
 				soapEnvelopeXml.Save(stream);
 			}
 
-			using (WebResponse response = await request.GetResponseAsync())
+			try
 			{
+				using (WebResponse response = await request.GetResponseAsync())
+				{
+					return await ReadStreamAsync(response);
+				}
+			}
+			catch (WebException e)
+			{
+				//For many possible errors ILIAS returns an HTTP 500 error that throws an exception. 
+				//In order to know what happens we have to intercept the error and read the content.
+				var response = await ReadStreamAsync(e.Response);
+				var errorMessage = IliasToObjectParser.ErrorResponse(response);
+				throw new ILSoapException(errorMessage);
+			}
+			
+		}
+
+
+		private async Task<string> ReadStreamAsync(WebResponse response)
+		{
 				using (StreamReader rd = new StreamReader(response.GetResponseStream()))
 				{
 					string soapResult = await rd.ReadToEndAsync();
 					return soapResult;
 				}
-			}
 		}
 
 		private HttpWebRequest CreateWebRequest()
