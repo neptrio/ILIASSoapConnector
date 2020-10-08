@@ -58,11 +58,11 @@ namespace ILIASSoapConnector
 
 		private async Task<string> ReadStreamAsync(WebResponse response)
 		{
-				using (StreamReader rd = new StreamReader(response.GetResponseStream()))
-				{
-					string soapResult = await rd.ReadToEndAsync();
-					return soapResult;
-				}
+			using (StreamReader rd = new StreamReader(response.GetResponseStream()))
+			{
+				string soapResult = await rd.ReadToEndAsync();
+				return soapResult;
+			}
 		}
 
 		private HttpWebRequest CreateWebRequest()
