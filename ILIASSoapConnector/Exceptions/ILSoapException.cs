@@ -6,9 +6,14 @@ namespace ILIASSoapConnector.Exceptions
 {
 	public class ILSoapException : Exception
 	{
-		public ILSoapException(string message): base(message)
-		{
+		public string FaultCode { get; }
 
+		public string FaultError { get; set; }
+
+		public ILSoapException(string message, string faultCode, string faultError): base(message)
+		{
+			FaultCode = faultCode;
+			FaultError = faultError;
 		}
 	}
 }
