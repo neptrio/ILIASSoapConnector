@@ -4,10 +4,9 @@ using System.Text;
 
 namespace ILIASSoapConnector.Models
 {
-	public class IliasRole : IliasObject
+	public class IliasObject
 	{
-		public string Title { get; set; }
-
-		public string Description { get; set; }
+		public string Type { get; set; }
+		public int ObjectId { get; set; }
 	}
 }

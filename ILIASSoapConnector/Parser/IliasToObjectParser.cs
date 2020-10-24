@@ -115,11 +115,16 @@ namespace ILIASSoapConnector.Parser
             var xmlElement = XElement.Parse(xml);
             var t = XDocument.Parse(xmlElement.Value);
 
-            var users = t.Descendants("Objects");
+            var users = t.Descendants("Object");
             foreach (var user in users)
             {
+                var role = new IliasRole();
+                role.Type = user.Attribute("type").Value;
+                role.ObjectId = Int32.Parse(user.Attribute("obj_id").Value);
+                role.Title = user.Element("Title").Value;
+                role.Description = user.Element("Description").Value;
 
-                
+                list.Add(role);
             }
 
             return list;
