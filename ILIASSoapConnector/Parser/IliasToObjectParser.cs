@@ -103,6 +103,33 @@ namespace ILIASSoapConnector.Parser
             return userId;
         }
 
+        /// <summary>
+        ///  Parst die XML-Antwort von SOAP - getUserRoles().
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
+        public static IEnumerable<IliasRole> GetUserRolesResponse(string xml)
+		{
+            var list = new List<IliasRole>();
+
+            var xmlElement = XElement.Parse(xml);
+            var t = XDocument.Parse(xmlElement.Value);
+
+            var users = t.Descendants("Object");
+            foreach (var user in users)
+            {
+                var role = new IliasRole();
+                role.Type = user.Attribute("type").Value;
+                role.ObjectId = Int32.Parse(user.Attribute("obj_id").Value);
+                role.Title = user.Element("Title").Value;
+                role.Description = user.Element("Description").Value;
+
+                list.Add(role);
+            }
+
+            return list;
+        }
+
         private static List<IliasUser> ParseUsersFromUserXMLResponse(string xml)
         {
             var list = new List<IliasUser>();
