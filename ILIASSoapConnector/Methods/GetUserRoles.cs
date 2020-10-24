@@ -10,7 +10,7 @@ namespace ILIASSoapConnector
 {
 	public partial class ILSoapEndpoint
 	{
-		public async Task<IEnumerable<IliasRole>> GetRoles(int userId)
+		public async Task<IEnumerable<IliasRole>> GetUserRoles(int userId)
 		{
 			var soapSession = await GetConnectorSessionAsync();
 
