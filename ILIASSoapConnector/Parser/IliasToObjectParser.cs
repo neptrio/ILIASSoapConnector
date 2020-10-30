@@ -33,6 +33,7 @@ namespace ILIASSoapConnector.Parser
             var title = userData.Select(c => c.Element("title")).First().Value;
             var firstname = userData.Select(c => c.Element("firstname")).First().Value;
             var lastname = userData.Select(c => c.Element("lastname")).First().Value;
+            var email = userData.Select(c => c.Element("email")).First().Value;
             var active = userData.Select(c => c.Element("active")).First().Value == "1" ? true : false;
 
             return new IliasUser
@@ -42,7 +43,8 @@ namespace ILIASSoapConnector.Parser
                 Title = title,
                 Firstname = firstname,
                 Lastname = lastname,
-                Active = active            
+                Active = active,
+                Email = email
             };
         }
 
