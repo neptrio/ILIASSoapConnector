@@ -17,6 +17,7 @@ namespace ILIASSoapConnector.Interfaces
 		Task<IliasUser> GetUserAsync(int userId);
 		Task<IEnumerable<IliasRole>> GetUserRoles(int userId);
 		Task<int> GetUserBySidAsync(string userId);
+		Task<bool> SendMail(string to, string cc, string bcc, string sender, string subject, string message);
 	}
 
 }

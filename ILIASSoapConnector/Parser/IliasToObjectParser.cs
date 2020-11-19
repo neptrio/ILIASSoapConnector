@@ -132,6 +132,13 @@ namespace ILIASSoapConnector.Parser
             return list;
         }
 
+        public static bool SendEmailResponse(string xml)
+		{
+            XDocument doc = XDocument.Parse(xml);
+            var response = doc.Root.Value;
+            return bool.Parse(response);
+        }
+
         private static List<IliasUser> ParseUsersFromUserXMLResponse(string xml)
         {
             var list = new List<IliasUser>();
@@ -163,7 +170,5 @@ namespace ILIASSoapConnector.Parser
         {
             return Int32.Parse(stringId.Replace(StringUserIdPattern, ""));
         }
-
-
     }
 }
