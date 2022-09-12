@@ -8,22 +8,24 @@ using System.Xml;
 
 namespace ILIASSoapConnector
 {
-	public partial class ILSoapEndpoint
-	{
-		/// <summary>
-		/// Achtung. Das liefert mehrere User in der SOAP Response zurück. Überarbeiten. Sucht nur nach Login.
-		/// </summary>
-		/// <param name="login"></param>
-		/// <returns></returns>
-		public async Task<IliasUser> SearchUserAsync(string login)
-		{
+    public partial class ILSoapEndpoint
+    {
+        /// <summary>
+        /// Achtung. Das liefert mehrere User in der SOAP Response zurück. Überarbeiten. Sucht nur nach Login.
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public async Task<IliasUser> SearchUserAsync(string login, string sid = "")
+        {
 
-			var session = GetConnectorSessionAsync();
+            var session = await GetConnectorSessionAsync();
+            if (!String.IsNullOrEmpty(sid))
+                session = sid;
 
-			var term = "login";
+            var term = "login";
 
-			var soapEnvelopeXml = new XmlDocument();
-			soapEnvelopeXml.LoadXml(String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            var soapEnvelopeXml = new XmlDocument();
+            soapEnvelopeXml.LoadXml(String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
             <s:Envelope xmlns:s=""http://schemas.xmlsoap.org/soap/envelope/"">
                 <s:Body s:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
                     <q1:searchUser xmlns:q1=""urn:ilUserAdministration"">
@@ -43,11 +45,11 @@ namespace ILIASSoapConnector
                 </s:Body>
             </s:Envelope>", session, term, login));
 
-			var request = new ILWebRequest(_baseUrl);
-			var response = await request.DoRequestAsync(soapEnvelopeXml);
+            var request = new ILWebRequest(_baseUrl);
+            var response = await request.DoRequestAsync(soapEnvelopeXml);
 
-			var user = IliasToObjectParser.SearchUsersResponse(response);
-			return user;
-		}
-	}
+            var user = IliasToObjectParser.SearchUsersResponse(response);
+            return user;
+        }
+    }
 }

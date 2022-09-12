@@ -10,9 +10,11 @@ namespace ILIASSoapConnector
 {
 	public partial class ILSoapEndpoint
 	{
-		public async Task<IEnumerable<IliasRole>> GetUserRoles(int userId)
+		public async Task<IEnumerable<IliasRole>> GetUserRoles(int userId, string sid = "")
 		{
 			var soapSession = await GetConnectorSessionAsync();
+			if (!String.IsNullOrEmpty(sid))
+				soapSession = sid;
 
 			var soapEnvelopeXml = new XmlDocument();
 			soapEnvelopeXml.LoadXml(String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
